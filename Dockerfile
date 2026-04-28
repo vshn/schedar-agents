@@ -1,5 +1,10 @@
 FROM docker/sandbox-templates:claude-code
+
+USER root
+RUN mkdir -p /opt/claude-config && chown agent:agent /opt/claude-config
+
 USER agent
+ENV CLAUDE_CONFIG_DIR=/opt/claude-config
 
 # Marketplaces
 RUN claude plugin marketplace add JuliusBrussee/caveman \
